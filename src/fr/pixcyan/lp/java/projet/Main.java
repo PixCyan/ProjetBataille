@@ -5,13 +5,11 @@
  */
 package fr.pixcyan.lp.java.projet;
 
-import java.util.LinkedList;
-import java.util.Map;
-
 /**
+ * Classe Main
  * @author raffennn
  */
-public class LaBatailleDeFaerun {
+public class Main {
 
     public static void main(String[] args) {
         Partie partie = new Partie();

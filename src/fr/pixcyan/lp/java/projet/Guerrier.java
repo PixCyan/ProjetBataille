@@ -14,34 +14,38 @@ public abstract class Guerrier {
     private int pv = 100;
     private int cout = 1;
 
-    public Guerrier() {
-    }
-
     /**
      * Définit la valeur du coup porté par un guerrier
-     * @return
+     *
+     * @param guerrier le guerrier à frapper
      */
     public void frapper(Guerrier guerrier) {
         De de = new De();
         int somme = de.lancerMultiples(this.getForce());
+        //Affiche les dégats avant la réduction de ceux-ci par les armures pour vérifier
+        //que cette dernière est bien prises en compte pour une unité naine
         System.out.println("Degat : " + somme);
+        //effectue le changement de PV sur l'unité qui reçoit le coups
         guerrier.degatsReçus(somme);
     }
 
     /**
      * Change les PV du guerrier en fonction des dégats reçus et de son armure
-     * @param nbDegat
+     *
+     * @param nbDegat dégats portés par un ennemi et reçu par le guerrier
      */
     public void degatsReçus(int nbDegat) {
         this.setPv(this.getPv() - nbDegat);
     }
 
     /**
-     *  Défini si le guerrier est mort
+     * Défini si le guerrier est mort
+     *
      * @return true si les PV du guerrier sont à 0 ou en dessous
      */
     public boolean estMort() {
         boolean mort = false;
+        //si le guerrier a 0 point de vie ou est passé en dessous de 0 lors du dernier coups porté il est considéré comme mort
         if (this.getPv() == 0 || this.getPv() < 0) {
             mort = true;
         }
@@ -49,6 +53,7 @@ public abstract class Guerrier {
     }
 
     //-------------- Setters / Getters --------------//
+
     /**
      * @return the type
      */
@@ -71,7 +76,6 @@ public abstract class Guerrier {
     }
 
     /**
-     *
      * @return th cout
      */
     public int getCout() {

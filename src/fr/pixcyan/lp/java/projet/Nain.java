@@ -14,21 +14,10 @@ public class Nain extends Guerrier {
     private int cout = super.getCout();
     private int degat = 1;
 
-    public Nain() {
-        super();
-    }
-
-    /**
-     * Définit la valeur du coup porté par un guerrier
-     * @return
-     */
-    public void frapper(Guerrier guerrier) {
-        super.frapper(guerrier);
-    }
-
     /**
      * Change les PV du guerrier en fonction des dégats reçus et de son armure
-     * @param nbDegat
+     *
+     * @param nbDegat dégats portés par un ennemi et reçu par le guerrier
      */
     @Override
     public void degatsReçus(int nbDegat) {
@@ -47,7 +36,7 @@ public class Nain extends Guerrier {
 
     @Override
     public int getForce() {
-        return super.getForce()*this.degat;
+        return super.getForce() * this.degat;
     }
 
     /**

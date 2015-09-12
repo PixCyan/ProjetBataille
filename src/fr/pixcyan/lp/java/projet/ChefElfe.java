@@ -1,30 +1,19 @@
 package fr.pixcyan.lp.java.projet;
 
 /**
- * Created by raffennn on 11/09/15.
+ * La classe ChefElfe gère les unités de type Chef Elfe
+ * @author PixCyan
  */
-public class ChefElfe extends Elfe{
+public class ChefElfe extends Elfe {
     private String type = "Chef Elfe";
     private int degat = 4;
-    private int cout = super.getCout()*2;
+    private int cout = super.getCout() * 2;
     private int armure = 1;
-
-    public ChefElfe() {
-        super();
-    }
-
-    /**
-     * Définit la valeur du coup porté par un guerrier
-     * @return
-     */
-
-    public void frapper(Guerrier guerrier) {
-        super.frapper(guerrier);
-    }
 
     /**
      * Change les PV du guerrier en fonction des dégats reçus et de son armure
-     * @param nbDegat
+     *
+     * @param nbDegat dégats portés par un ennemi et reçu par le guerrier
      */
     @Override
     public void degatsReçus(int nbDegat) {
@@ -53,7 +42,7 @@ public class ChefElfe extends Elfe{
      */
     @Override
     public int getForce() {
-        return super.getForce()*this.degat;
+        return super.getForce() * this.degat;
     }
 
     /**

@@ -1,10 +1,10 @@
 package fr.pixcyan.lp.java.projet;
 
 import java.util.LinkedList;
-import java.util.Map;
 
 /**
- * Created by raffennn on 11/09/15.
+ * La classe Chateau gère les fonctions des châteaux
+ * @author PixCyan
  */
 public class Chateau {
     private LinkedList<Guerrier> listeGuerriers;

@@ -11,24 +11,13 @@ package fr.pixcyan.lp.java.projet;
 public class Elfe extends Guerrier {
     private String type = "Elfe";
     private int degat = 2;
-    private int cout = super.getCout()*2;
+    private int cout = super.getCout() * 2;
     private int armure = 1;
-
-    public Elfe() {
-        super();
-    }
-
-    /**
-     * Définit la valeur du coup porté par un guerrier
-     * @return
-     */
-    public void frapper(Guerrier guerrier) {
-        super.frapper(guerrier);
-    }
 
     /**
      * Change les PV du guerrier en fonction des dégats reçus et de son armure
-     * @param nbDegat
+     *
+     * @param nbDegat dégats portés par un ennemi et reçu par le guerrier
      */
     @Override
     public void degatsReçus(int nbDegat) {
@@ -47,7 +36,7 @@ public class Elfe extends Guerrier {
 
     @Override
     public int getForce() {
-        return super.getForce()*this.degat;
+        return super.getForce() * this.degat;
     }
 
     /**

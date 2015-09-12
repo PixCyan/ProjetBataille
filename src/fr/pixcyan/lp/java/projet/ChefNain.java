@@ -1,30 +1,19 @@
 package fr.pixcyan.lp.java.projet;
 
 /**
- * Created by raffennn on 11/09/15.
+ * La classe ChefNain gère les unités de type Chef Nain
+ * @author PixCyan
  */
-public class ChefNain extends Nain{
+public class ChefNain extends Nain {
     private String type = "Chef Nain";
     private int armure = 4;
-    private int cout = super.getCout()*3;
+    private int cout = super.getCout() * 3;
     private int degat = 1;
-
-    public ChefNain() {
-        super();
-    }
-
-    /**
-     * Définit la valeur du coup porté par un guerrier
-     * @return
-     */
-
-    public void frapper(Guerrier guerrier) {
-        super.frapper(guerrier);
-    }
 
     /**
      * Change les PV du guerrier en fonction des dégats reçus et de son armure
-     * @param nbDegat
+     *
+     * @param nbDegat dégats portés par un ennemi et reçu par le guerrier
      */
     @Override
     public void degatsReçus(int nbDegat) {
@@ -33,6 +22,7 @@ public class ChefNain extends Nain{
 
 
     //-------------- Setters / Getters --------------//
+
     /**
      * @return the type
      */
@@ -42,8 +32,9 @@ public class ChefNain extends Nain{
 
     @Override
     public int getForce() {
-        return super.getForce()*this.degat;
+        return super.getForce() * this.degat;
     }
+
     /**
      * @return the armure
      */

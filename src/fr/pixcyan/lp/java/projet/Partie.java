@@ -3,7 +3,8 @@ package fr.pixcyan.lp.java.projet;
 import java.util.LinkedList;
 
 /**
- * Created by raffennn on 11/09/15.
+ * La classe Partie gère le fonctionnement de la partie
+ * @author PixCyan
  */
 public class Partie {
     private LinkedList<Guerrier> listeGuerriersRouge = new LinkedList<>();
@@ -13,21 +14,22 @@ public class Partie {
 
     public void lancerPartie(Menu menu) {
         /**
-        Nain nainTest = new Nain();
-        Elfe elfeTest = new Elfe();
-        ChefElfe chefElfeTest = new ChefElfe();
-        ChefNain chefNainTest = new ChefNain();
-        seBattre(chefNainTest, elfeTest);**/
+         Nain nainTest = new Nain();
+         Elfe elfeTest = new Elfe();
+         ChefElfe chefElfeTest = new ChefElfe();
+         ChefNain chefNainTest = new ChefNain();
+         seBattre(chefNainTest, elfeTest);**/
     }
 
     /**
      * Fait se battre deux guerriers
-     * @param guerrrier1
-     * @param guerrier2
+     *
+     * @param guerrrier1 le guerrier qui va se battre contre guerrier2
+     * @param guerrier2 le guerrier qui va se battre contre guerrier1
      */
-    public void seBattre(Guerrier guerrrier1, Guerrier guerrier2){
+    public void seBattre(Guerrier guerrrier1, Guerrier guerrier2) {
         int tour = 0;
-        while(!guerrrier1.estMort() && !guerrier2.estMort()) {
+        while (!guerrrier1.estMort() && !guerrier2.estMort()) {
             System.out.println("------------------ Tour : " + tour + " ------------------");
             guerrier2.frapper(guerrrier1);
             System.out.println(guerrier2.getType() + " attaque : ");
@@ -40,8 +42,8 @@ public class Partie {
             System.out.println("Nain : " + guerrrier1.getPv() + "\n");
             tour++;
         }
-        if (guerrrier1.estMort()){
-            System.out.println(guerrrier1.getType() +" est mort !");
+        if (guerrrier1.estMort()) {
+            System.out.println(guerrrier1.getType() + " est mort !");
         } else if (guerrier2.estMort()) {
             System.out.println(guerrier2.getType() + " est mort !");
         }
@@ -50,14 +52,14 @@ public class Partie {
     /**
      * Entraine un nouveau nain
      */
-    public static void creerUnNain(){
+    public static void creerUnNain() {
 
     }
 
     /**
      * Enraine un nouvel elfe
      */
-    public static void creerUnElfe(){
+    public static void creerUnElfe() {
 
     }
 

@@ -3,13 +3,15 @@ package fr.pixcyan.lp.java.projet;
 import java.util.Scanner;
 
 /**
- * Created by raffennn on 11/09/15.
+ * La classe Menu gère l'ensemble des menus contenant les différentes options auquels ont accès les utilisateurs
+ * @author PixCyan
  */
 
 
-//TODO
+//TODO Le menu est incomplet !
 public class Menu {
     private Partie partie;
+
     public void MenuPrincipal(Partie partie) {
         this.partie = partie;
         Scanner scanner = new Scanner(System.in);
@@ -22,14 +24,14 @@ public class Menu {
             System.out.println("|                                    |");
             System.out.println("--------------------------------------");
             entree = scanner.nextInt();
-            switch (entree){
-                case 1 : {
+            switch (entree) {
+                case 1: {
                     this.MenuRouge();
                     //partie.lancerPartie();
                     break;
                 }
                 default: {
-                    break ;
+                    break;
                 }
             }
         } while (entree != 2);
@@ -91,6 +93,7 @@ public class Menu {
     }
 
     public void entrainement() {
+        //TODO ajouter un paramètre pour récupérer la valeur saisie pour prendre les ressources du bon chateau
         Scanner scanner = new Scanner(System.in);
         int entree = 0;
         do {
