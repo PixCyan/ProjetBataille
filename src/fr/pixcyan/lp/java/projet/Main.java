@@ -12,14 +12,13 @@ package fr.pixcyan.lp.java.projet;
 public class Main {
 
     public static void main(String[] args) {
-        Partie partie = new Partie();
         Menu menu = new Menu();
+        Partie partie = new Partie(menu);
         menu.MenuPrincipal(partie);
     }
 
     public static void unitesDesChateaux(Menu menu) {
-        menu.MenuRouge();
-        menu.MenuBleu();
+        menu.MenuChateau();
     }
 
 }

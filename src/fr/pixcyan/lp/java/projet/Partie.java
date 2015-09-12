@@ -7,18 +7,38 @@ import java.util.LinkedList;
  * @author PixCyan
  */
 public class Partie {
-    private LinkedList<Guerrier> listeGuerriersRouge = new LinkedList<>();
-    private LinkedList<Guerrier> listeGuerriersBleu = new LinkedList<>();
+    private LinkedList<Guerrier> listeGuerriersRouge;
+    private LinkedList<Guerrier> listeGuerriersBleu;
     private Chateau chateauRouge = new Chateau();
     private Chateau chateauBleu = new Chateau();
+    private Menu menu;
 
-    public void lancerPartie(Menu menu) {
-        /**
+    public Partie(Menu menu) {
+        this.menu = menu;
+    }
+
+    public void lancerPartie() {
+        //this.nettoyerLesListes();
+        this.majListe();
+        this.nouveauTour();
+        /*
          Nain nainTest = new Nain();
          Elfe elfeTest = new Elfe();
          ChefElfe chefElfeTest = new ChefElfe();
          ChefNain chefNainTest = new ChefNain();
-         seBattre(chefNainTest, elfeTest);**/
+         seBattre(chefNainTest, elfeTest);*/
+
+    }
+
+    public void nouveauTour(){
+        if (this.listeGuerriersRouge.isEmpty() && this.listeGuerriersBleu.isEmpty()) {
+            System.out.println("Aucun guerrier disponible pour ce tour.");
+        } else {
+            System.out.println("Les unités ont été créées et avance d'une case.");
+        }
+        this.chateauBleu.setRessources(this.chateauBleu.getRessources()+1);
+        this.chateauRouge.setRessources(this.chateauRouge.getRessources()+1);
+        menu.MenuChateauEnJeu();
     }
 
     /**
@@ -49,18 +69,19 @@ public class Partie {
         }
     }
 
-    /**
-     * Entraine un nouveau nain
-     */
-    public static void creerUnNain() {
-
+    public void majListe() {
+        this.listeGuerriersBleu = this.chateauBleu.getListeGuerriers();
+        this.listeGuerriersRouge = this.chateauRouge.getListeGuerriers();
     }
 
     /**
-     * Enraine un nouvel elfe
+     * Remet les listes vides pour une nouvelle partie
      */
-    public static void creerUnElfe() {
-
+    public void nettoyerLesListes() {
+        this.listeGuerriersBleu.clear();
+        this.listeGuerriersRouge.clear();
+        this.chateauBleu.nettoyerLaListe();
+        this.chateauRouge.nettoyerLaListe();
     }
 
     //-------------- Setters / Getters --------------//
