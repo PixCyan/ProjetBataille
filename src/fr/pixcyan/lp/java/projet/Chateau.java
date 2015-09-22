@@ -7,11 +7,14 @@ import java.util.LinkedList;
  * @author PixCyan
  */
 public class Chateau {
+    private Menu menu = new Menu();
     private LinkedList<Guerrier> listeGuerriers;
     private int ressources = 3;
-    private Menu menu = new Menu();
+    private Couleurs couleur;
 
-    public Chateau() {
+
+    public Chateau(Couleurs couleur) {
+        this.couleur = couleur;
         this.listeGuerriers = new LinkedList<>();
     }
 
@@ -74,11 +77,35 @@ public class Chateau {
         }
     }
 
+    /**
+     * Cette méthode sert à vider les listes
+     */
     public void nettoyerLaListe() {
         this.listeGuerriers.clear();
     }
 
+    /**
+     *Affiche le nombre de guerriers de l'armée
+     */
+    public void afficherArmee() {
+        int nbGuerriers = 0;
+        if (!this.listeGuerriers.isEmpty()) {
+            for(Guerrier guerrier:this.listeGuerriers) {
+                nbGuerriers++;
+            }
+            System.out.println("Chateau " + this.getCouleur() + " : " + nbGuerriers + " guerrier(s) dans votre armées !");
+        } else {
+            System.out.println("Chateau " + this.getCouleur() + " : " + "Aucun soldat dans votre armée !");
+        }
+    }
+
+
     //-------------- Setters / Getters --------------//
+
+    public Couleurs getCouleur() {
+        return couleur;
+    }
+
     public void setRessources(int ressources) {
         this.ressources = ressources;
     }
@@ -93,5 +120,9 @@ public class Chateau {
 
     public void setListeGuerriers(LinkedList<Guerrier> listeGuerriers) {
         this.listeGuerriers = listeGuerriers;
+    }
+
+    public void setCouleur(Couleurs couleur) {
+        this.couleur = couleur;
     }
 }

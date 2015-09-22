@@ -5,14 +5,27 @@
  */
 package fr.pixcyan.lp.java.projet;
 
+import javax.sound.midi.Soundbank;
+
 /**
  * @author raffennn
  */
 public abstract class Guerrier {
+    //constantes
+    private static final int VAL_FORCE = 10;
+    private static final int VAL_COUT = 1;
+    private static final int VAL_ARMURE = 1;
+    private static final int VAL_DEGAT =1;
+    private static final int VAL_PV = 100;
+
+    //attributs
     private String type = "Guerrier";
-    private int force = 10;
-    private int pv = 100;
-    private int cout = 1;
+    private int force = VAL_FORCE;
+    private int cout = VAL_COUT;
+    private int armure = VAL_ARMURE;
+    private int degat = VAL_DEGAT;
+    private int pv = VAL_PV;
+
 
     /**
      * Définit la valeur du coup porté par un guerrier
@@ -20,8 +33,7 @@ public abstract class Guerrier {
      * @param guerrier le guerrier à frapper
      */
     public void frapper(Guerrier guerrier) {
-        De de = new De();
-        int somme = de.lancerMultiples(this.getForce());
+        int somme = De.lancerMultiples(this.getForce());
         //Affiche les dégats avant la réduction de ceux-ci par les armures pour vérifier
         //que cette dernière est bien prises en compte pour une unité naine
         System.out.println("Degat : " + somme);
@@ -35,7 +47,7 @@ public abstract class Guerrier {
      * @param nbDegat dégats portés par un ennemi et reçu par le guerrier
      */
     public void degatsReçus(int nbDegat) {
-        this.setPv(this.getPv() - nbDegat);
+        this.setPv(this.getPv() - nbDegat/this.getArmure());
     }
 
     /**
@@ -52,7 +64,24 @@ public abstract class Guerrier {
         return mort;
     }
 
+    public void afficheInfosGuerriers() {
+        System.out.println("Type : " + this.getType());
+        System.out.println("PV : " + this.getPv());
+        System.out.println("Armure : " + this.getArmure());
+        System.out.println("Force : " + this.getForce() + " (Force multiplié par dégat : " + this.getDegat() + ").");
+        System.out.println("Cout unité : " + this.getCout());
+    }
+
     //-------------- Setters / Getters --------------//
+
+
+    public int getArmure() {
+        return armure;
+    }
+
+    public int getDegat() {
+        return degat;
+    }
 
     /**
      * @return the type
@@ -66,13 +95,6 @@ public abstract class Guerrier {
      */
     public int getForce() {
         return force;
-    }
-
-    /**
-     * @param force the force to set
-     */
-    public void setForce(int force) {
-        this.force = force;
     }
 
     /**
@@ -96,10 +118,23 @@ public abstract class Guerrier {
         this.pv = pv;
     }
 
-    /**
-     * @param cout the cout to set
-     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setForce(int force) {
+        this.force = force;
+    }
+
     public void setCout(int cout) {
         this.cout = cout;
+    }
+
+    public void setDegat(int degat) {
+        this.degat = degat;
+    }
+
+    public void setArmure(int armure) {
+        this.armure = armure;
     }
 }

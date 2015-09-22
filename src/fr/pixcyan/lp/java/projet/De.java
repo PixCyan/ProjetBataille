@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public class De {
     private static final Random random = new Random();
-    private int value = 3;
+    private static final int value = 3;
     private int resDe = 0;
 
     public De() {
@@ -25,7 +25,7 @@ public class De {
      *
      * @return le résultat du lancé
      */
-    public int lancerDe() {
+    public static int lancerDe() {
         return random.nextInt(value);
     }
 
@@ -35,11 +35,11 @@ public class De {
      * @param nbLancer le nombre de lancé de dé effectué par une unité
      * @return somme la somme de tous les lancés
      */
-    public int lancerMultiples(int nbLancer) {
+    public static int lancerMultiples(int nbLancer) {
         int somme = 0;
         while (nbLancer != 0) {
             //somme
-            somme = somme + this.lancerDe() + 1;
+            somme = somme + lancerDe() + 1;
             nbLancer--;
         }
         return somme;

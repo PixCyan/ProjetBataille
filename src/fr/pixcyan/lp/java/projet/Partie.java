@@ -9,11 +9,13 @@ import java.util.LinkedList;
 public class Partie {
     private LinkedList<Guerrier> listeGuerriersRouge;
     private LinkedList<Guerrier> listeGuerriersBleu;
-    private Chateau chateauRouge = new Chateau();
-    private Chateau chateauBleu = new Chateau();
+    private Chateau chateauRouge;
+    private Chateau chateauBleu;
     private Menu menu;
 
     public Partie(Menu menu) {
+        this.chateauBleu = new Chateau(Couleurs.Bleu);
+        this.chateauRouge = new Chateau(Couleurs.Rouge);
         this.menu = menu;
     }
 
@@ -31,10 +33,12 @@ public class Partie {
     }
 
     public void nouveauTour(){
+        this.chateauBleu.afficherArmee();
+        this.chateauRouge.afficherArmee();
         if (this.listeGuerriersRouge.isEmpty() && this.listeGuerriersBleu.isEmpty()) {
             System.out.println("Aucun guerrier disponible pour ce tour.");
         } else {
-            System.out.println("Les unités ont été créées et avance d'une case.");
+            System.out.println("Les unités ont été créées et avance d'une case. \n");
         }
         this.chateauBleu.setRessources(this.chateauBleu.getRessources()+1);
         this.chateauRouge.setRessources(this.chateauRouge.getRessources()+1);

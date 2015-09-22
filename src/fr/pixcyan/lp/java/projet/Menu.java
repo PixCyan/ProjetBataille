@@ -69,7 +69,6 @@ public class Menu {
                     break;
                 default:
                     break;
-
             }
         } while (entree != 3 && entree !=4);
     }
@@ -89,8 +88,8 @@ public class Menu {
             System.out.println("~~~~~~~~~~~~~~~~|====|~~~~~~~~~~~~~~~~          ~~~~~~~~~~~~~~~~|====|~~~~~~~~~~~~~~~~");
             System.out.println("~~~~~~~~~~~~~~~~|====|~~~~~~~~~~~~~~~~          ~~~~~~~~~~~~~~~~|====|~~~~~~~~~~~~~~~~");
             System.out.println("                                                                                      ");
-            System.out.println("                                   3) Lancer le tour suivant                          ");
-            System.out.println("                                   4) Quitter la partie                               ");
+            System.out.println("                                 3) Lancer le tour suivant                            ");
+            System.out.println("                                 4) Quitter la partie                                 ");
             entree = scanner.nextInt();
             switch (entree) {
                 case 1:
