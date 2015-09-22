@@ -11,28 +11,36 @@ public class Partie {
     private LinkedList<Guerrier> listeGuerriersBleu;
     private Chateau chateauRouge;
     private Chateau chateauBleu;
+    private Plateau plateau;
     private Menu menu;
 
     public Partie(Menu menu) {
         this.chateauBleu = new Chateau(Couleurs.Bleu);
         this.chateauRouge = new Chateau(Couleurs.Rouge);
+        this.listeGuerriersBleu = new LinkedList<>();
+        this.listeGuerriersRouge = new LinkedList<>();
         this.menu = menu;
+        this.plateau = new Plateau();
     }
 
+    /**
+     * Lance une nouvelle partie
+     */
     public void lancerPartie() {
-        //this.nettoyerLesListes();
-        this.majListe();
-        this.nouveauTour();
-        /*
-         Nain nainTest = new Nain();
-         Elfe elfeTest = new Elfe();
-         ChefElfe chefElfeTest = new ChefElfe();
-         ChefNain chefNainTest = new ChefNain();
-         seBattre(chefNainTest, elfeTest);*/
-
+        if(this.chateauRouge.getListeDattente().isEmpty() && this.chateauBleu.getListeDattente().isEmpty()) {
+            System.out.println("Vous n'avez pas entrainé des unités dans les deux chateaux !");
+            this.menu.MenuChateau();
+        } else {
+            //TODO lancer le tour par tour
+            this.majListe();
+        }
+        //this.nouveauTour();
     }
 
-    public void nouveauTour(){
+    /**
+     * Permet de passer au tour de jeu suivant
+     */
+    public void nouveauTour() {
         this.chateauBleu.afficherArmee();
         this.chateauRouge.afficherArmee();
         if (this.listeGuerriersRouge.isEmpty() && this.listeGuerriersBleu.isEmpty()) {
@@ -41,8 +49,8 @@ public class Partie {
             System.out.println("Les unités ont été créées et avance d'une case. \n");
         }
         this.chateauBleu.setRessources(this.chateauBleu.getRessources()+1);
-        this.chateauRouge.setRessources(this.chateauRouge.getRessources()+1);
-        menu.MenuChateauEnJeu();
+        this.chateauRouge.setRessources(this.chateauRouge.getRessources() + 1);
+        //this.menu.MenuChateauEnJeu();
     }
 
     /**
@@ -74,18 +82,20 @@ public class Partie {
     }
 
     public void majListe() {
-        this.listeGuerriersBleu = this.chateauBleu.getListeGuerriers();
-        this.listeGuerriersRouge = this.chateauRouge.getListeGuerriers();
+        this.listeGuerriersBleu.addAll(this.chateauBleu.getListeGuerriers()) ;
+        this.listeGuerriersRouge.addAll(this.chateauRouge.getListeGuerriers());
     }
 
     /**
      * Remet les listes vides pour une nouvelle partie
      */
     public void nettoyerLesListes() {
-        this.listeGuerriersBleu.clear();
-        this.listeGuerriersRouge.clear();
-        this.chateauBleu.nettoyerLaListe();
-        this.chateauRouge.nettoyerLaListe();
+        if(!this.listeGuerriersBleu.isEmpty() && !this.listeGuerriersRouge.isEmpty()) {
+            this.listeGuerriersBleu.clear();
+            this.listeGuerriersRouge.clear();
+            this.chateauBleu.nettoyerLaListe();
+            this.chateauRouge.nettoyerLaListe();
+        }
     }
 
     //-------------- Setters / Getters --------------//

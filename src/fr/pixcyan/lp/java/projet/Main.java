@@ -16,9 +16,4 @@ public class Main {
         Partie partie = new Partie(menu);
         menu.MenuPrincipal(partie);
     }
-
-    public static void unitesDesChateaux(Menu menu) {
-        menu.MenuChateau();
-    }
-
 }

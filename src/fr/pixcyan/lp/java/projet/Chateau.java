@@ -9,13 +9,14 @@ import java.util.LinkedList;
 public class Chateau {
     private Menu menu = new Menu();
     private LinkedList<Guerrier> listeGuerriers;
+    private LinkedList<Guerrier> listeDattente;
     private int ressources = 3;
     private Couleurs couleur;
-
 
     public Chateau(Couleurs couleur) {
         this.couleur = couleur;
         this.listeGuerriers = new LinkedList<>();
+        this.listeDattente = new LinkedList<>();
     }
 
     /**
@@ -31,10 +32,11 @@ public class Chateau {
     public void creerUnNain(){
         Nain nain = new Nain();
         if (nain.getCout() < this.ressources || nain.getCout() == this.ressources) {
-           this.listeGuerriers.add(nain);
+            this.listeDattente.add(nain);
             this.ressources = this.ressources - nain.getCout();
         } else {
-            System.out.println("Il n'y a pas assez de ressources au château pour créer cette unité !");
+            this.listeDattente.add(nain);
+            System.out.println("Cette unité est ajoutée à la liste d'attente.");
         }
     }
 
@@ -44,10 +46,11 @@ public class Chateau {
     public void creerChefNain(){
         ChefNain nain = new ChefNain();
         if (nain.getCout() < this.ressources || nain.getCout() == this.ressources) {
-            this.listeGuerriers.add(nain);
+            this.listeDattente.add(nain);
             this.ressources = this.ressources - nain.getCout();
         } else {
-            System.out.println("Il n'y a pas assez de ressources au château pour créer cette unité !");
+            this.listeDattente.add(nain);
+            System.out.println("Cette unité est ajoutée à la liste d'attente.");
         }
     }
 
@@ -57,10 +60,11 @@ public class Chateau {
     public void creerUnElfe(){
         Elfe elfe = new Elfe();
         if (elfe.getCout() < this.ressources || elfe.getCout() == this.ressources) {
-            this.listeGuerriers.add(elfe);
+            this.listeDattente.add(elfe);
             this.ressources = this.ressources - elfe.getCout();
         } else {
-            System.out.println("Il n'y a pas assez de ressources au château pour créer cette unité !");
+            this.listeDattente.add(elfe);
+            System.out.println("Cette unité est ajoutée à la liste d'attente.");
         }
     }
 
@@ -70,10 +74,11 @@ public class Chateau {
     public void creerChefElfe(){
         ChefElfe elfe = new ChefElfe();
         if (elfe.getCout() < this.ressources || elfe.getCout() == this.ressources) {
-            this.listeGuerriers.add(elfe);
+            this.listeDattente.add(elfe);
             this.ressources = this.ressources - elfe.getCout();
         } else {
-            System.out.println("Il n'y a pas assez de ressources au château pour créer cette unité !");
+            this.listeDattente.add(elfe);
+            System.out.println("Cette unité est ajoutée à la liste d'attente.");
         }
     }
 
@@ -82,6 +87,7 @@ public class Chateau {
      */
     public void nettoyerLaListe() {
         this.listeGuerriers.clear();
+        this.listeDattente.clear();
     }
 
     /**
@@ -99,7 +105,6 @@ public class Chateau {
         }
     }
 
-
     //-------------- Setters / Getters --------------//
 
     public Couleurs getCouleur() {
@@ -114,6 +119,10 @@ public class Chateau {
         return ressources;
     }
 
+    public LinkedList<Guerrier> getListeDattente() {
+        return listeDattente;
+    }
+
     public LinkedList<Guerrier> getListeGuerriers() {
         return listeGuerriers;
     }
@@ -124,5 +133,9 @@ public class Chateau {
 
     public void setCouleur(Couleurs couleur) {
         this.couleur = couleur;
+    }
+
+    public void setListeDattente(LinkedList<Guerrier> listeDattente) {
+        this.listeDattente = listeDattente;
     }
 }

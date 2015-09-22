@@ -64,6 +64,9 @@ public abstract class Guerrier {
         return mort;
     }
 
+    /**
+     * Affiche les informations d'un guerrier
+     */
     public void afficheInfosGuerriers() {
         System.out.println("Type : " + this.getType());
         System.out.println("PV : " + this.getPv());

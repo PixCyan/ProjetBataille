@@ -7,8 +7,6 @@ import java.util.Scanner;
  * @author PixCyan
  */
 
-
-//TODO Le menu est incomplet !
 public class Menu {
     private Partie partie;
 

@@ -3,6 +3,7 @@ package fr.pixcyan.lp.java.projet;
 import java.util.LinkedList;
 
 /**
+ * Permet d'ajouter et gérer les carreaux d'un plateau
  * Created by raffennn on 21/09/15.
  */
 public class Carreau {
@@ -10,15 +11,17 @@ public class Carreau {
     private LinkedList<Guerrier> listeBleu;
     private int numeroDeLaCase;
 
-    public Carreau(int numeroDeLaCase) {
+    public Carreau(int nbCarreau) {
         this.listeBleu = new LinkedList<>();
         this.listeRouge = new LinkedList<>();
-        this.numeroDeLaCase = numeroDeLaCase;
+        this.numeroDeLaCase = nbCarreau;
     }
 
+    public void ajouterGuerrier() {
+
+    }
 
     //-------------- Setters / Getters --------------//
-
 
     public int getNumeroDeLaCase() {
         return numeroDeLaCase;
