@@ -33,29 +33,32 @@ public class Partie {
         } else {
             //sortir les unités si possibles :
             this.chateauBleu.sortirGuerrier();
-            //TODO ajouter les unités au premier carreau
-            //TODO lancer le tour par tour
-            //TODO lancer bataille entre deux camps
-            //TODO avancer les unités sur les cases
+            //Récupération des listes de guerriers qui sont sortis des chateaux :
             this.majListe();
+
+            //TODO lancer le tour par tour
+            this.nouveauTour();
         }
-        //this.nouveauTour();
     }
 
     /**
      * Permet de passer au tour de jeu suivant
      */
     public void nouveauTour() {
+        //TODO avancer les unités sur les cases
+
         this.chateauBleu.afficherArmee();
         this.chateauRouge.afficherArmee();
-        if (this.listeGuerriersRouge.isEmpty() && this.listeGuerriersBleu.isEmpty()) {
+        /*if (this.listeGuerriersRouge.isEmpty() && this.listeGuerriersBleu.isEmpty()) {
             System.out.println("Aucun guerrier disponible pour ce tour.");
         } else {
             System.out.println("Les unités ont été créées et avance d'une case. \n");
-        }
+        }*/
+        this.placerGuerriers();
+        //TODO lancer bataille entre deux camps
+        //Ajout des ressources au chateau :
         this.chateauBleu.setRessources(this.chateauBleu.getRessources()+1);
         this.chateauRouge.setRessources(this.chateauRouge.getRessources() + 1);
-        //this.menu.MenuChateauEnJeu();
     }
 
     /**
@@ -86,6 +89,23 @@ public class Partie {
         }
     }
 
+    /**
+     * Parcours les listes pour placer les guerriers sur leur carreau de départ
+     */
+    public void placerGuerriers() {
+        for (Guerrier guerrier : listeGuerriersBleu) {
+            this.plateau.placerGuerrier(this.listeGuerriersBleu.getFirst(), this.chateauBleu.getCouleur());
+            this.listeGuerriersBleu.remove(this.listeGuerriersBleu.getFirst());
+        }
+        for(Guerrier guerrier : listeGuerriersRouge) {
+            this.plateau.placerGuerrier(this.listeGuerriersRouge.getFirst(), this.chateauRouge.getCouleur());
+            this.listeGuerriersRouge.remove(this.listeGuerriersRouge.getFirst());
+        }
+    }
+
+    /**
+     * Met à jour les listes des guerriers au combat
+     */
     public void majListe() {
         this.listeGuerriersBleu.addAll(this.chateauBleu.getListeGuerriers()) ;
         this.listeGuerriersRouge.addAll(this.chateauRouge.getListeGuerriers());

@@ -17,6 +17,11 @@ public class Carreau {
         this.numeroDeLaCase = nbCarreau;
     }
 
+    /**
+     * Associé un guerrier à son carreau de départ
+     * @param guerrier
+     * @param couleur
+     */
     public void ajouterGuerrier(Guerrier guerrier, Couleurs couleur) {
         if (couleur == Couleurs.Rouge) {
             listeRouge.add(guerrier);
@@ -25,6 +30,11 @@ public class Carreau {
         }
     }
 
+
+    //TODO : bataille sur un carreau
+    /**
+     * Fait se battre les guerriers des deux camps s'ils se rencontrent sur un même carreau
+     */
     public void batailleArmée() {
 
     }
