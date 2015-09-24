@@ -19,6 +19,25 @@ public class Chateau {
         this.listeDattente = new LinkedList<>();
     }
 
+    public void sortirGuerrier(){
+        int ressources = this.getRessources();
+        while(ressources != 0 && !this.listeDattente.isEmpty()) {
+            Guerrier guerrier = listeDattente.getFirst();
+            if(guerrier.getCout() <= ressources){
+                System.out.println("Ressources = " + ressources +". Guerrier = " + guerrier.getCout() + " " + guerrier.getType());
+                this.listeGuerriers.add(guerrier);
+                this.listeDattente.remove(guerrier);
+                this.ressources = this.ressources - guerrier.getCout();
+                ressources = this.getRessources();
+                System.out.println("Ajouter à la liste principal.");
+            } else {
+                System.out.println("Ressources = " + ressources +". Cout guerrier = " + guerrier.getCout());
+                System.out.println("Reste dans la liste d'attente.");
+                ressources = 0;
+            }
+        }
+    }
+
     /**
      * Renvoie au menu de création d'unité avec les ressources actuelles disponibles
      */
@@ -31,13 +50,7 @@ public class Chateau {
      */
     public void creerUnNain(){
         Nain nain = new Nain();
-        if (nain.getCout() < this.ressources || nain.getCout() == this.ressources) {
-            this.listeDattente.add(nain);
-            this.ressources = this.ressources - nain.getCout();
-        } else {
-            this.listeDattente.add(nain);
-            System.out.println("Cette unité est ajoutée à la liste d'attente.");
-        }
+        this.listeDattente.add(nain);
     }
 
     /**
@@ -45,13 +58,7 @@ public class Chateau {
      */
     public void creerChefNain(){
         ChefNain nain = new ChefNain();
-        if (nain.getCout() < this.ressources || nain.getCout() == this.ressources) {
-            this.listeDattente.add(nain);
-            this.ressources = this.ressources - nain.getCout();
-        } else {
-            this.listeDattente.add(nain);
-            System.out.println("Cette unité est ajoutée à la liste d'attente.");
-        }
+        this.listeDattente.add(nain);
     }
 
     /**
@@ -59,13 +66,7 @@ public class Chateau {
      */
     public void creerUnElfe(){
         Elfe elfe = new Elfe();
-        if (elfe.getCout() < this.ressources || elfe.getCout() == this.ressources) {
-            this.listeDattente.add(elfe);
-            this.ressources = this.ressources - elfe.getCout();
-        } else {
-            this.listeDattente.add(elfe);
-            System.out.println("Cette unité est ajoutée à la liste d'attente.");
-        }
+        this.listeDattente.add(elfe);
     }
 
     /**
@@ -73,13 +74,7 @@ public class Chateau {
      */
     public void creerChefElfe(){
         ChefElfe elfe = new ChefElfe();
-        if (elfe.getCout() < this.ressources || elfe.getCout() == this.ressources) {
-            this.listeDattente.add(elfe);
-            this.ressources = this.ressources - elfe.getCout();
-        } else {
-            this.listeDattente.add(elfe);
-            System.out.println("Cette unité est ajoutée à la liste d'attente.");
-        }
+        this.listeDattente.add(elfe);
     }
 
     /**

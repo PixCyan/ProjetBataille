@@ -31,7 +31,12 @@ public class Partie {
             System.out.println("Vous n'avez pas entrainé des unités dans les deux chateaux !");
             this.menu.MenuChateau();
         } else {
+            //sortir les unités si possibles :
+            this.chateauBleu.sortirGuerrier();
+            //TODO ajouter les unités au premier carreau
             //TODO lancer le tour par tour
+            //TODO lancer bataille entre deux camps
+            //TODO avancer les unités sur les cases
             this.majListe();
         }
         //this.nouveauTour();

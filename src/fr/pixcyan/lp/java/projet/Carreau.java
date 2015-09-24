@@ -17,7 +17,15 @@ public class Carreau {
         this.numeroDeLaCase = nbCarreau;
     }
 
-    public void ajouterGuerrier() {
+    public void ajouterGuerrier(Guerrier guerrier, Couleurs couleur) {
+        if (couleur == Couleurs.Rouge) {
+            listeRouge.add(guerrier);
+        } else {
+            listeBleu.add(guerrier);
+        }
+    }
+
+    public void batailleArmée() {
 
     }
 
