@@ -10,22 +10,26 @@ public class Chateau {
     private Menu menu = new Menu();
     private LinkedList<Guerrier> listeGuerriers;
     private LinkedList<Guerrier> listeDattente;
+    private LinkedList<Guerrier> listeTemp;
     private int ressources = 3;
     private Couleurs couleur;
 
     public Chateau(Couleurs couleur) {
         this.couleur = couleur;
+        this.listeTemp = new LinkedList<>();
         this.listeGuerriers = new LinkedList<>();
         this.listeDattente = new LinkedList<>();
     }
 
     public void sortirGuerrier(){
+        this.listeTemp.clear();
         int ressources = this.getRessources();
         while(ressources != 0 && !this.listeDattente.isEmpty()) {
             Guerrier guerrier = listeDattente.getFirst();
             if(guerrier.getCout() <= ressources){
                 System.out.println("Ressources = " + ressources +". Guerrier = " + guerrier.getCout() + " " + guerrier.getType());
                 this.listeGuerriers.add(guerrier);
+                this.listeTemp.add(guerrier);
                 this.listeDattente.remove(guerrier);
                 this.ressources = this.ressources - guerrier.getCout();
                 ressources = this.getRessources();
@@ -102,6 +106,11 @@ public class Chateau {
 
     //-------------- Setters / Getters --------------//
 
+
+    public LinkedList<Guerrier> getListeTemp() {
+        return listeTemp;
+    }
+
     public Couleurs getCouleur() {
         return couleur;
     }
@@ -132,5 +141,9 @@ public class Chateau {
 
     public void setListeDattente(LinkedList<Guerrier> listeDattente) {
         this.listeDattente = listeDattente;
+    }
+
+    public void setListeTemp(LinkedList<Guerrier> listeTemp) {
+        this.listeTemp = listeTemp;
     }
 }

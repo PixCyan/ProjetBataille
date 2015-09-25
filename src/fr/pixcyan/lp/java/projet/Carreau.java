@@ -35,14 +35,15 @@ public class Carreau {
      */
     public void batailleArmée(Chateau chBleu, Chateau chRouge) {
         if(!this.listeBleu.isEmpty() && !this.listeRouge.isEmpty()) {
-            System.out.println("L'armée bleu sur ce carreau : " + this.listeBleu.size() +
-                    ". \nL'armée rouge sur ce carreau : " + this.getListeRouge().size() +
-                    ". \nLe combat est engagé !");
+            System.out.println("Guerrier(s) bleu sur ce carreau : " + this.listeBleu.size() +
+                    ". \nGuerrier(s) rouge sur ce carreau : " + this.getListeRouge().size() +
+                    ".\nLe combat est engagé ! \n");
             int compte = 0;
             int nbGuerriers = this.getListeBleu().size() + this.getListeRouge().size();
             while(compte != nbGuerriers) {
                 if(!this.listeRouge.isEmpty() && !this.listeBleu.isEmpty()) {
                     //Tour des bleus :
+                    System.out.println("---- Tour bleus ----");
                     for (int i = 0; i < this.listeBleu.size(); i++) {
                         Guerrier guerrier = this.listeRouge.getFirst();
                         this.afficherBataille(this.getListeBleu().get(i), guerrier);
@@ -53,11 +54,10 @@ public class Carreau {
                         }
                         compte++;
                     }
-                } else {
-                    compte++;
                 }
                 if (!this.listeRouge.isEmpty() && !this.listeBleu.isEmpty()) {
                     //Tour des rouges :
+                    System.out.println("---- Tour rouges ----");
                     for(int i = 0; i < this.listeRouge.size(); i++) {
                         Guerrier guerrier = this.listeBleu.getFirst();
                         this.afficherBataille(this.getListeRouge().get(i), guerrier);
@@ -68,9 +68,8 @@ public class Carreau {
                         }
                         compte++;
                     }
-                } else {
-                    compte++;
                 }
+                compte = nbGuerriers;
             }
         }
     }
@@ -81,6 +80,22 @@ public class Carreau {
         System.out.println(guerrier1.getType() + " attaque " + guerrier2.getType());
         System.out.println(guerrier2.getType() + " PV : " + guerrier2.getPv());
         System.out.println(guerrier1.getType() + " PV : " + guerrier1.getPv() + "\n");
+    }
+
+    public void afficheGuerriersSurCarreau() {
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("Carreau " + this.getNumeroDeLaCase() + " ");
+        if(!this.listeBleu.isEmpty()) {
+            for(Guerrier guerrier: listeBleu) {
+                System.out.println("Liste bleue : " + guerrier.getType());
+            }
+        }
+        if(!this.listeRouge.isEmpty()) {
+            for(Guerrier guerrier : listeRouge) {
+                System.out.println("Liste rouge : " + guerrier.getType());
+            }
+        }
+        System.out.println("-----------------------------------------------------------\n");
     }
 
     //-------------- Setters / Getters --------------//

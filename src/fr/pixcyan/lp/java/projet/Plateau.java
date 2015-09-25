@@ -58,7 +58,7 @@ public class Plateau {
         //déplacer les unités Rouge en parcourant le plateau depuis la case de départ ennemi :
         for(int i = 0; i < 5; i++) {
             //si la case contient des guerriers rouge
-            if(!this.carreaux[i].getListeRouge().isEmpty()) {
+            if(!this.carreaux[i].getListeRouge().isEmpty() && this.carreaux[i].getListeBleu().isEmpty()) {
                 //récupération de la liste des guerriers :
                 this.listeTemp.addAll(this.carreaux[i].getListeRouge());
                 //ajout des guerriers dans la case i-1
@@ -71,7 +71,8 @@ public class Plateau {
         //déplacer les unités Bleu en parcourant le plateau depuis la case de départ ennemi :
         for(int i = 4; i >= 0; i--) {
             //si la case contient des guerriers rouge
-            if(!this.carreaux[i].getListeBleu().isEmpty()) {
+            if(this.carreaux[i].getListeRouge().isEmpty() && !this.carreaux[i].getListeBleu().isEmpty()) {
+                //!this.carreaux[i].getListeBleu().isEmpty()
                 //récupération de la liste des guerriers :
                 this.listeTemp.addAll(this.carreaux[i].getListeBleu());
                 //ajout des guerriers dans la case i+1
@@ -88,7 +89,7 @@ public class Plateau {
      */
     public void afficheCarreauxDuPlateau() {
         for(Carreau carreau:this.carreaux) {
-            System.out.println("Numéro de case : " + carreau.getNumeroDeLaCase());
+            carreau.afficheGuerriersSurCarreau();
         }
     }
 

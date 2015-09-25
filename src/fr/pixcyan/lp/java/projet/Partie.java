@@ -37,8 +37,11 @@ public class Partie {
             this.chateauRouge.sortirGuerrier();
             //Récupération des listes de guerriers qui sont sortis des chateaux :
             this.majListe();
+            this.placerGuerriers();
             //lance le premier tour :
-            System.out.println("Les premières unités ont été créées ou attendent d'avoir suffisammentr de ressources. \n Lancez le premier tour.");
+            System.out.println("Les premières unités ont été créées ou attendent d'avoir suffisamment de ressources. \n Lancez le premier tour.");
+            System.out.println("Plateau en début de jeu : ");
+            this.plateau.afficheCarreauxDuPlateau();
             this.menu.jeu();
         }
     }
@@ -49,7 +52,6 @@ public class Partie {
     public void nouveauTour() {
         tour++;
         System.out.println("------------------ Tour : " + tour + " ------------------");
-        this.majListe();
         Couleurs couleur = this.gagnerDirect();
         if(couleur == Couleurs.Noir) {
             //Ajout des ressources au chateau :
@@ -58,10 +60,14 @@ public class Partie {
             //Affichage du nombre de guerriers présent au combat :
             this.chateauBleu.afficherArmee();
             this.chateauRouge.afficherArmee();
-            //Sortir des guerriers si possible :
-            this.placerGuerriers();
             //Avancer les unités :
             this.plateau.avancerLesUnites();
+            //Sortir des guerriers si possible :
+            this.chateauBleu.sortirGuerrier();
+            this.chateauRouge.sortirGuerrier();
+            this.majListe();
+            this.placerGuerriers();
+            this.plateau.afficheCarreauxDuPlateau();
             //Lancement bataille si rencontre :
             this.plateau.verifRencontreGuerrier(this.getChateauBleu(), this.getChateauRouge());
             couleur = this.plateau.gagner();
@@ -107,33 +113,36 @@ public class Partie {
      */
     public void placerGuerriers() {
         for (Guerrier guerrier : listeGuerriersBleu) {
-            this.plateau.placerGuerrier(this.listeGuerriersBleu.getFirst(), this.chateauBleu.getCouleur());
-            this.listeGuerriersBleu.remove(this.listeGuerriersBleu.getFirst());
+            this.plateau.placerGuerrier(guerrier, this.chateauBleu.getCouleur());
         }
+        this.listeGuerriersBleu.clear();
         for(Guerrier guerrier : listeGuerriersRouge) {
-            this.plateau.placerGuerrier(this.listeGuerriersRouge.getFirst(), this.chateauRouge.getCouleur());
-            this.listeGuerriersRouge.remove(this.listeGuerriersRouge.getFirst());
+            this.plateau.placerGuerrier(guerrier, this.chateauRouge.getCouleur());
         }
+        this.listeGuerriersRouge.clear();
+        /*for(Guerrier guerrier : listeGuerriersRouge) {
+            this.listeGuerriersRouge.remove(guerrier);
+        }*/
     }
 
     /**
      * Met à jour les listes des guerriers au combat
      */
     public void majListe() {
-        this.listeGuerriersBleu.addAll(this.chateauBleu.getListeGuerriers()) ;
-        this.listeGuerriersRouge.addAll(this.chateauRouge.getListeGuerriers());
+        this.listeGuerriersBleu.clear();
+        this.listeGuerriersRouge.clear();
+        this.listeGuerriersBleu.addAll(this.chateauBleu.getListeTemp()) ;
+        this.listeGuerriersRouge.addAll(this.chateauRouge.getListeTemp());
     }
 
     /**
      * Remet les listes vides pour une nouvelle partie
      */
     public void nettoyerLesListes() {
-        if(!this.listeGuerriersBleu.isEmpty() && !this.listeGuerriersRouge.isEmpty()) {
-            this.listeGuerriersBleu.clear();
-            this.listeGuerriersRouge.clear();
-            this.chateauBleu.nettoyerLaListe();
-            this.chateauRouge.nettoyerLaListe();
-        }
+        this.listeGuerriersBleu.clear();
+        this.listeGuerriersRouge.clear();
+        this.chateauBleu.nettoyerLaListe();
+        this.chateauRouge.nettoyerLaListe();
     }
 
     /**
@@ -145,10 +154,10 @@ public class Partie {
         //le chateau ennemi est vainqueur
         Couleurs couleur = Couleurs.Noir;
         if (this.chateauBleu.getListeGuerriers().isEmpty() && this.chateauBleu.getListeDattente().isEmpty()) {
-            couleur = this.chateauBleu.getCouleur();
+            couleur = this.chateauRouge.getCouleur();
         }
         if(this.chateauRouge.getListeGuerriers().isEmpty() && this.chateauRouge.getListeDattente().isEmpty()) {
-            couleur = this.chateauRouge.getCouleur();
+            couleur = this.chateauBleu.getCouleur();
         }
         return couleur;
     }
