@@ -28,8 +28,8 @@ public class Menu {
             entree = scanner.nextInt();
             switch (entree) {
                 case 1:
+                    this.partie.nettoyerLesListes();
                     this.MenuChateau();
-                    //partie.lancerPartie();
                     break;
                 default:
                     break;

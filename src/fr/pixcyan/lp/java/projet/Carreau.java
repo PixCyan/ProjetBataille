@@ -45,28 +45,32 @@ public class Carreau {
                     //Tour des bleus :
                     System.out.println("---- Tour bleus ----");
                     for (int i = 0; i < this.listeBleu.size(); i++) {
-                        Guerrier guerrier = this.listeRouge.getFirst();
-                        this.afficherBataille(this.getListeBleu().get(i), guerrier);
-                        //this.listeBleu.get(i).frapper(guerrier);
-                        if (guerrier.estMort()) {
-                            this.listeRouge.remove(guerrier);
-                            chRouge.getListeGuerriers().remove(guerrier);
+                        if(!this.listeRouge.isEmpty()) {
+                            Guerrier guerrier = this.listeRouge.getFirst();
+                            this.afficherBataille(this.getListeBleu().get(i), guerrier);
+                            //this.listeBleu.get(i).frapper(guerrier);
+                            if (guerrier.estMort()) {
+                                this.listeRouge.remove(guerrier);
+                                chRouge.getListeGuerriers().remove(guerrier);
+                            }
+                            compte++;
                         }
-                        compte++;
                     }
                 }
                 if (!this.listeRouge.isEmpty() && !this.listeBleu.isEmpty()) {
                     //Tour des rouges :
                     System.out.println("---- Tour rouges ----");
                     for(int i = 0; i < this.listeRouge.size(); i++) {
-                        Guerrier guerrier = this.listeBleu.getFirst();
-                        this.afficherBataille(this.getListeRouge().get(i), guerrier);
-                        //this.listeRouge.get(i).frapper(guerrier);
-                        if(guerrier.estMort()) {
-                            this.listeBleu.remove(guerrier);
-                            chBleu.getListeGuerriers().remove(guerrier);
+                        if(!this.listeBleu.isEmpty()) {
+                            Guerrier guerrier = this.listeBleu.getFirst();
+                            this.afficherBataille(this.getListeRouge().get(i), guerrier);
+                            //this.listeRouge.get(i).frapper(guerrier);
+                            if(guerrier.estMort()) {
+                                this.listeBleu.remove(guerrier);
+                                chBleu.getListeGuerriers().remove(guerrier);
+                            }
+                            compte++;
                         }
-                        compte++;
                     }
                 }
                 compte = nbGuerriers;
