@@ -6,5 +6,6 @@ package fr.pixcyan.lp.java.projet;
  */
 public enum Couleurs {
     Bleu,
-    Rouge
+    Rouge,
+    Noir
 }

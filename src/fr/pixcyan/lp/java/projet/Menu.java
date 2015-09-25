@@ -142,4 +142,34 @@ public class Menu {
             }
         } while (entree != 5);
     }
+
+    public void jeu() {
+        Scanner scanner = new Scanner(System.in);
+        int entree = 0;
+        do {
+            System.out.println("               |-|--|-|               ");
+            System.out.println("|-|-|-|-|      |  ==  |      |-|-|-|-|");
+            System.out.println("|       |______| Menu |______|       |");
+            System.out.println("|       |                    |       |");
+            System.out.println("|          Bataille en cours         |");
+            System.out.println("|                                    |");
+            System.out.println("|       1) Tour suivant              |");
+            System.out.println("|                                    |");
+            System.out.println("|                                    |");
+            System.out.println("|                                    |");
+            System.out.println("|                                    |");
+            System.out.println("~~~~~~~~~~~~~~~~|====|~~~~~~~~~~~~~~~~");
+            System.out.println("~~~~~~~~~~~~~~~~|====|~~~~~~~~~~~~~~~~");
+            System.out.println("                                      ");
+            System.out.println("        0) Quitter                    ");
+            entree = scanner.nextInt();
+            switch (entree) {
+                case 1:
+                    partie.nouveauTour();
+                    break;
+                default:
+                    break;
+            }
+        } while (entree != 0);
+    }
 }

@@ -13,6 +13,7 @@ public class Partie {
     private Chateau chateauBleu;
     private Plateau plateau;
     private Menu menu;
+    private static int tour = 0;
 
     public Partie(Menu menu) {
         this.chateauBleu = new Chateau(Couleurs.Bleu);
@@ -33,11 +34,12 @@ public class Partie {
         } else {
             //sortir les unités si possibles :
             this.chateauBleu.sortirGuerrier();
+            this.chateauRouge.sortirGuerrier();
             //Récupération des listes de guerriers qui sont sortis des chateaux :
             this.majListe();
-
-            //TODO lancer le tour par tour
-            this.nouveauTour();
+            //lance le premier tour :
+            System.out.println("Les premières unités ont été créées ou attendent d'avoir suffisammentr de ressources. \n Lancez le premier tour.");
+            this.menu.jeu();
         }
     }
 
@@ -45,23 +47,34 @@ public class Partie {
      * Permet de passer au tour de jeu suivant
      */
     public void nouveauTour() {
-        //TODO avancer les unités sur les cases
-
-        this.chateauBleu.afficherArmee();
-        this.chateauRouge.afficherArmee();
-        /*if (this.listeGuerriersRouge.isEmpty() && this.listeGuerriersBleu.isEmpty()) {
-            System.out.println("Aucun guerrier disponible pour ce tour.");
+        tour++;
+        System.out.println("------------------ Tour : " + tour + " ------------------");
+        this.majListe();
+        Couleurs couleur = this.gagnerDirect();
+        if(couleur == Couleurs.Noir) {
+            //Ajout des ressources au chateau :
+            this.chateauBleu.setRessources(this.chateauBleu.getRessources() + 1);
+            this.chateauRouge.setRessources(this.chateauRouge.getRessources() + 1);
+            //Affichage du nombre de guerriers présent au combat :
+            this.chateauBleu.afficherArmee();
+            this.chateauRouge.afficherArmee();
+            //Sortir des guerriers si possible :
+            this.placerGuerriers();
+            //Avancer les unités :
+            this.plateau.avancerLesUnites();
+            //Lancement bataille si rencontre :
+            this.plateau.verifRencontreGuerrier(this.getChateauBleu(), this.getChateauRouge());
+            couleur = this.plateau.gagner();
+            if(couleur != Couleurs.Noir) {
+                System.out.println("Le Chateau : " + couleur + " a gagné !");
+            }
         } else {
-            System.out.println("Les unités ont été créées et avance d'une case. \n");
-        }*/
-        this.placerGuerriers();
-        //TODO lancer bataille entre deux camps
-        //Ajout des ressources au chateau :
-        this.chateauBleu.setRessources(this.chateauBleu.getRessources()+1);
-        this.chateauRouge.setRessources(this.chateauRouge.getRessources() + 1);
+            System.out.println("Le Chateau : " + couleur + " a gagné !");
+        }
     }
 
     /**
+     * Méthode de test entre deux guerriers
      * Fait se battre deux guerriers
      *
      * @param guerrrier1 le guerrier qui va se battre contre guerrier2
@@ -121,6 +134,23 @@ public class Partie {
             this.chateauBleu.nettoyerLaListe();
             this.chateauRouge.nettoyerLaListe();
         }
+    }
+
+    /**
+     *Un chateau gagne quand son ennemi n'a plus de guerrier en jeu ou en attente
+     * @return couleur
+     */
+    public Couleurs gagnerDirect() {
+        //Si les listes d'un des chateaux sont vides alors il n'a plus de guerrier au combat et en liste d'attente
+        //le chateau ennemi est vainqueur
+        Couleurs couleur = Couleurs.Noir;
+        if (this.chateauBleu.getListeGuerriers().isEmpty() && this.chateauBleu.getListeDattente().isEmpty()) {
+            couleur = this.chateauBleu.getCouleur();
+        }
+        if(this.chateauRouge.getListeGuerriers().isEmpty() && this.chateauRouge.getListeDattente().isEmpty()) {
+            couleur = this.chateauRouge.getCouleur();
+        }
+        return couleur;
     }
 
     //-------------- Setters / Getters --------------//

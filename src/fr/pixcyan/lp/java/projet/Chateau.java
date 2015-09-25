@@ -94,7 +94,7 @@ public class Chateau {
             for(Guerrier guerrier:this.listeGuerriers) {
                 nbGuerriers++;
             }
-            System.out.println("Chateau " + this.getCouleur() + " : " + nbGuerriers + " guerrier(s) dans votre armées !");
+            System.out.println("Chateau " + this.getCouleur() + " : " + nbGuerriers + " guerrier(s) dans votre armée (Au combat)!");
         } else {
             System.out.println("Chateau " + this.getCouleur() + " : " + "Aucun soldat dans votre armée !");
         }

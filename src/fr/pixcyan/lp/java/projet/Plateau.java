@@ -50,7 +50,6 @@ public class Plateau {
         }
     }
 
-    //TODO : déplacement
     /**
      * Fait se déplacer les guerriers sur le plateau
      */
@@ -91,6 +90,35 @@ public class Plateau {
         for(Carreau carreau:this.carreaux) {
             System.out.println("Numéro de case : " + carreau.getNumeroDeLaCase());
         }
+    }
+
+    /**
+     * Vérifie si une rencontre a lieu sur un carreau
+     * @param chBleu
+     * @param chRouge
+     */
+    public void verifRencontreGuerrier(Chateau chBleu, Chateau chRouge) {
+        for (Carreau carreau: carreaux) {
+            carreau.batailleArmée(chBleu, chRouge);
+        }
+    }
+
+    /**
+     * Si un ou plusieurs guerriers se situent sur la case de départ adverse la couleur cu chateau auquel il appartient
+     * a gagnée
+     * @return couleur
+     */
+    public  Couleurs gagner() {
+        Couleurs couleur = Couleurs.Noir;
+        Carreau carreau0 = this.carreaux[0];
+        Carreau carreau4 = this.carreaux[4];
+        if (!carreau0.getListeRouge().isEmpty()) {
+            couleur = Couleurs.Rouge;
+        }
+        if (!carreau4.getListeBleu().isEmpty()) {
+            couleur = Couleurs.Bleu;
+        }
+        return couleur;
     }
 
     //-------------- Setters / Getters --------------//

@@ -30,13 +30,57 @@ public class Carreau {
         }
     }
 
-
-    //TODO : bataille sur un carreau
     /**
      * Fait se battre les guerriers des deux camps s'ils se rencontrent sur un même carreau
      */
-    public void batailleArmée() {
+    public void batailleArmée(Chateau chBleu, Chateau chRouge) {
+        if(!this.listeBleu.isEmpty() && !this.listeRouge.isEmpty()) {
+            System.out.println("L'armée bleu sur ce carreau : " + this.listeBleu.size() +
+                    ". \nL'armée rouge sur ce carreau : " + this.getListeRouge().size() +
+                    ". \nLe combat est engagé !");
+            int compte = 0;
+            int nbGuerriers = this.getListeBleu().size() + this.getListeRouge().size();
+            while(compte != nbGuerriers) {
+                if(!this.listeRouge.isEmpty() && !this.listeBleu.isEmpty()) {
+                    //Tour des bleus :
+                    for (int i = 0; i < this.listeBleu.size(); i++) {
+                        Guerrier guerrier = this.listeRouge.getFirst();
+                        this.afficherBataille(this.getListeBleu().get(i), guerrier);
+                        //this.listeBleu.get(i).frapper(guerrier);
+                        if (guerrier.estMort()) {
+                            this.listeRouge.remove(guerrier);
+                            chRouge.getListeGuerriers().remove(guerrier);
+                        }
+                        compte++;
+                    }
+                } else {
+                    compte++;
+                }
+                if (!this.listeRouge.isEmpty() && !this.listeBleu.isEmpty()) {
+                    //Tour des rouges :
+                    for(int i = 0; i < this.listeRouge.size(); i++) {
+                        Guerrier guerrier = this.listeBleu.getFirst();
+                        this.afficherBataille(this.getListeRouge().get(i), guerrier);
+                        //this.listeRouge.get(i).frapper(guerrier);
+                        if(guerrier.estMort()) {
+                            this.listeBleu.remove(guerrier);
+                            chBleu.getListeGuerriers().remove(guerrier);
+                        }
+                        compte++;
+                    }
+                } else {
+                    compte++;
+                }
+            }
+        }
+    }
 
+
+    public void afficherBataille(Guerrier guerrier1, Guerrier guerrier2) {
+        guerrier1.frapper(guerrier2);
+        System.out.println(guerrier1.getType() + " attaque " + guerrier2.getType());
+        System.out.println(guerrier2.getType() + " PV : " + guerrier2.getPv());
+        System.out.println(guerrier1.getType() + " PV : " + guerrier1.getPv() + "\n");
     }
 
     //-------------- Setters / Getters --------------//
